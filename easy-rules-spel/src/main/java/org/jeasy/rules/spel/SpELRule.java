@@ -44,6 +44,7 @@ public class SpELRule extends BasicRule {
 
     private Condition condition = Condition.FALSE;
     private final List<Action> actions = new ArrayList<>();
+    private final List<Action> elseActions = new ArrayList<>();
     private final ParserContext parserContext;
     private BeanResolver beanResolver;
 
@@ -148,6 +149,13 @@ public class SpELRule extends BasicRule {
     @Override
     public void execute(Facts facts) throws Exception {
         for (Action action : actions) {
+            action.execute(facts);
+        }
+    }
+
+    @Override
+    public void executeElse(Facts facts) throws Exception {
+        for (Action action : elseActions) {
             action.execute(facts);
         }
     }

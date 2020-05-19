@@ -121,12 +121,25 @@ public final class DefaultRulesEngine extends AbstractRulesEngine {
                     }
                 }
             } else {
-                LOGGER.debug("Rule '{}' has been evaluated to false, it has not been executed", name);
-                triggerListenersAfterEvaluate(rule, facts, false);
-                if (parameters.isSkipOnFirstNonTriggeredRule()) {
-                    LOGGER.debug("Next rules will be skipped since parameter skipOnFirstNonTriggeredRule is set");
-                    break;
-                }
+				LOGGER.debug("Rule '{}' has been evaluated to false, ELSE action will be executed", name);
+				triggerListenersAfterEvaluate(rule, facts, false);
+				try {
+					triggerListenersBeforeExecute(rule, facts);
+					rule.executeElse(facts);
+					LOGGER.debug("Rule '{}' ELSE action performed successfully", name);
+					triggerListenersOnSuccess(rule, facts);
+					if (parameters.isSkipOnFirstNonTriggeredRule()) {
+						LOGGER.debug("Next rules will be skipped since parameter skipOnFirstNonTriggeredRule is set");
+						break;
+					}
+				} catch (Exception exception) {
+					LOGGER.error("Rule '" + name + "' ELSE action performed with error", exception);
+					triggerListenersOnFailure(rule, exception, facts);
+					if (parameters.isSkipOnFirstFailedRule()) {
+						LOGGER.debug("Next rules will be skipped since parameter skipOnFirstFailedRule is set");
+						break;
+					}
+				}
             }
         }
     }

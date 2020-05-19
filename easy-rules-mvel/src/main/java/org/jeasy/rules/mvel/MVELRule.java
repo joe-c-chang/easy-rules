@@ -42,6 +42,7 @@ public class MVELRule extends BasicRule {
 
     private Condition condition = Condition.FALSE;
     private final List<Action> actions = new ArrayList<>();
+    private final List<Action> elseActions = new ArrayList<>();
     private final ParserContext parserContext;
 
     /**
@@ -114,6 +115,17 @@ public class MVELRule extends BasicRule {
         return this;
     }
 
+
+    /**
+     * Add an action specified as an MVEL expression to the rule. Executed when the condition is evaluated to be false.
+     * @param action to add to the rule
+     * @return this rule
+     */
+    public MVELRule elseDo(String action) {
+        this.elseActions.add(new MVELAction(action, parserContext));
+        return this;
+    }
+
     @Override
     public boolean evaluate(Facts facts) {
         return condition.evaluate(facts);
@@ -122,6 +134,13 @@ public class MVELRule extends BasicRule {
     @Override
     public void execute(Facts facts) throws Exception {
         for (Action action : actions) {
+            action.execute(facts);
+        }
+    }
+    
+    @Override
+    public void executeElse(Facts facts) throws Exception {
+        for (Action action : elseActions) {
             action.execute(facts);
         }
     }

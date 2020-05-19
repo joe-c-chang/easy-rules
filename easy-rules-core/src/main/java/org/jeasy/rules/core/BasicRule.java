@@ -106,6 +106,13 @@ public class BasicRule implements Rule {
         // no op
     }
 
+    /**
+     * {@inheritDoc}
+     */
+	public void executeElse(Facts facts) throws Exception {
+		// no op as well
+	}
+	
     public String getName() {
         return name;
     }

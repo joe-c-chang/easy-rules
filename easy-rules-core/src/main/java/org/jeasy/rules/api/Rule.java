@@ -85,4 +85,11 @@ public interface Rule extends Comparable<Rule> {
      */
     void execute(Facts facts) throws Exception;
 
+
+    /**
+     * Rule actions abstraction : this method encapsulates the rule's actions when condition is evaluated to be false.
+     * @throws Exception thrown if an exception occurs during actions performing
+     */
+    void executeElse(Facts facts) throws Exception;
+
 }
