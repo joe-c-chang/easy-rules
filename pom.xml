@@ -86,7 +86,7 @@
         <dependencies>
             <dependency>
                 <groupId>org.easyrules</groupId>
-                <artifactId>easyrules-core</artifactId>
+                <artifactId>easyrules-plus-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
