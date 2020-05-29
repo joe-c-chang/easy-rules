@@ -8,7 +8,7 @@
   <dependencies>
     <dependency>
       <groupId>org.jeasy</groupId>
-      <artifactId>easy-rules-core</artifactId>
+      <artifactId>easy-rules-plus-core</artifactId>
       <version>4.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
