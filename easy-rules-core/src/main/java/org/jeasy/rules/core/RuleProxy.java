@@ -37,7 +37,12 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 import static java.lang.String.format;
 
@@ -60,12 +65,7 @@ public class RuleProxy implements InvocationHandler {
     private org.jeasy.rules.annotation.Rule annotation;
 
     private static final RuleDefinitionValidator ruleDefinitionValidator = new RuleDefinitionValidator();
-
     private static final Logger LOGGER = LoggerFactory.getLogger(RuleProxy.class);
-
-    private RuleProxy(final Object target) {
-        this.target = target;
-    }
 
     /**
      * Makes the rule object implement the {@link Rule} interface.
@@ -85,6 +85,10 @@ public class RuleProxy implements InvocationHandler {
                     new RuleProxy(rule));
         }
         return result;
+    }
+
+    private RuleProxy(final Object target) {
+        this.target = target;
     }
 
     @Override

@@ -76,8 +76,9 @@ public class MVELRuleFactory extends AbstractRuleFactory {
      * If no rule definitions are found, a {@link IllegalArgumentException} will be thrown.
      * If more than a rule is defined in the descriptor, the first rule will be returned.
      *
-     * @param ruleDescriptor as a Reader
+     * @param ruleDescriptor descriptor of rule definition
      * @return a new rule
+     * @throws Exception if unable to create the rule from the descriptor
      */
     public Rule createRule(Reader ruleDescriptor) throws Exception {
         List<RuleDefinition> ruleDefinitions = reader.read(ruleDescriptor);
@@ -88,10 +89,11 @@ public class MVELRuleFactory extends AbstractRuleFactory {
     }
 
     /**
-     * Create a set of {@link MVELRule} from a Reader.
+     * Create a set of {@link MVELRule} from a rule descriptor.
      *
-     * @param rulesDescriptor as a Reader
+     * @param rulesDescriptor descriptor of rule definitions
      * @return a set of rules
+     * @throws Exception if unable to create rules from the descriptor
      */
     public Rules createRules(Reader rulesDescriptor) throws Exception {
         Rules rules = new Rules();

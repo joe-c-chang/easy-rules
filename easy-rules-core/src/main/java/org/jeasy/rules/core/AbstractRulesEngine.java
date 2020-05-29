@@ -26,6 +26,7 @@ package org.jeasy.rules.core;
 import org.jeasy.rules.api.RuleListener;
 import org.jeasy.rules.api.RulesEngine;
 import org.jeasy.rules.api.RulesEngineListener;
+import org.jeasy.rules.api.RulesEngineParameters;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,6 +53,10 @@ public abstract class AbstractRulesEngine implements RulesEngine {
         this.rulesEngineListeners = new ArrayList<>();
     }
 
+    /**
+     * Return a copy of the rules engine parameters.
+     * @return copy of the rules engine parameters
+     */
     @Override
     public RulesEngineParameters getParameters() {
         return new RulesEngineParameters(
@@ -62,11 +67,19 @@ public abstract class AbstractRulesEngine implements RulesEngine {
         );
     }
 
+    /**
+     * Return an unmodifiable list of the registered rule listeners.
+     * @return an unmodifiable list of the registered rule listeners
+     */
     @Override
     public List<RuleListener> getRuleListeners() {
         return Collections.unmodifiableList(ruleListeners);
     }
 
+    /**
+     * Return an unmodifiable list of the registered rules engine listeners
+     * @return an unmodifiable list of the registered rules engine listeners
+     */
     @Override
     public List<RulesEngineListener> getRulesEngineListeners() {
         return Collections.unmodifiableList(rulesEngineListeners);

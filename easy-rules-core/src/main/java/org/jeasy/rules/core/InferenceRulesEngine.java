@@ -23,18 +23,27 @@
  */
 package org.jeasy.rules.core;
 
-import org.jeasy.rules.api.*;
+import org.jeasy.rules.api.Facts;
+import org.jeasy.rules.api.Rule;
+import org.jeasy.rules.api.RuleListener;
+import org.jeasy.rules.api.Rules;
+import org.jeasy.rules.api.RulesEngine;
+import org.jeasy.rules.api.RulesEngineListener;
+import org.jeasy.rules.api.RulesEngineParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Inference {@link RulesEngine} implementation.
  *
- * Rules are selected based on given facts and fired according to their natural order which is priority by default.
- *
- * The engine continuously selects and fires rules until no more rules are applicable.
+ * Rules are selected based on given facts and fired according to their natural
+ * order which is priority by default. This implementation continuously selects
+ * and fires rules until no more rules are applicable.
  *
  * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  */

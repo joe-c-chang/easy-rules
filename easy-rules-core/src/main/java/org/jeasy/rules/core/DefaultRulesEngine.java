@@ -23,7 +23,12 @@
  */
 package org.jeasy.rules.core;
 
-import org.jeasy.rules.api.*;
+import org.jeasy.rules.api.Fact;
+import org.jeasy.rules.api.Facts;
+import org.jeasy.rules.api.Rule;
+import org.jeasy.rules.api.Rules;
+import org.jeasy.rules.api.RulesEngine;
+import org.jeasy.rules.api.RulesEngineParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,9 +38,9 @@ import java.util.Map;
 /**
  * Default {@link RulesEngine} implementation.
  *
- * This implementation handles a set of rules with unique names.
- *
  * Rules are fired according to their natural order which is priority by default.
+ * This implementation iterates over the sorted set of rules, evaluates the condition
+ * of each rule and executes its actions if the condition evaluates to true.
  *
  * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  */
@@ -84,8 +89,7 @@ public final class DefaultRulesEngine extends AbstractRulesEngine {
                 break;
             }
             if (!shouldBeEvaluated(rule, facts)) {
-                LOGGER.debug("Rule '{}' has been skipped before being evaluated",
-                    name);
+                LOGGER.debug("Rule '{}' has been skipped before being evaluated", name);
                 continue;
             }
             boolean evaluationResult = false;
