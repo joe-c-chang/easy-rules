@@ -86,7 +86,7 @@
         <dependencies>
             <dependency>
                 <groupId>org.easyrules</groupId>
-                <artifactId>easyrules-plus-core</artifactId>
+                <artifactId>easy-rules-plus-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

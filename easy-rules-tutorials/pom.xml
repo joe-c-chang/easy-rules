@@ -59,17 +59,17 @@
     <dependencies>
         <dependency>
             <groupId>org.jeasy</groupId>
-            <artifactId>easy-rules-core</artifactId>
+            <artifactId>easy-rules-plus-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jeasy</groupId>
-            <artifactId>easy-rules-mvel</artifactId>
+            <artifactId>easy-rules-plus-mvel</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jeasy</groupId>
-            <artifactId>easy-rules-support</artifactId>
+            <artifactId>easy-rules-plus-support</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
